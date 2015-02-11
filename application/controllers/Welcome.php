@@ -9,7 +9,7 @@
  *
  * ------------------------------------------------------------------------
  */
-class Welcome extends Application {
+class aWelcome extends Application {
 
     function __construct() {
         parent::__construct();
