@@ -79,7 +79,7 @@ class Order extends Application {
         $this->data['pagebody'] = 'show_order';
         $this->data['order_num'] = $order_num;
         //FIXME
-
+//asdasdasdasdasdasdasd
         $this->render();
     }
 
