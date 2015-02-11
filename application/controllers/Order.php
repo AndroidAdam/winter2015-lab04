@@ -17,7 +17,16 @@ class Order extends Application {
 
     // start a new order
     function neworder() {
-        //FIXME
+        
+        $order_num = $this->orders->highest()+1;
+        
+        // Create a new order
+        $new_order = $this->orders->create();
+        $new_order->num    = $order_num;
+        $new_order->date   = date();
+        $new_order->status = 'a';
+        $new_order->total = 0;
+        $this->orders->add($new_order);
 
         redirect('/order/display_menu/' . $order_num);
     }
@@ -29,6 +38,8 @@ class Order extends Application {
 
         $this->data['pagebody'] = 'show_menu';
         $this->data['order_num'] = $order_num;
+         $this->data['title']     = 'order #'.$order_num.', '
+            .$this->orders->total($order_num);
         //FIXME
 
         // Make the columns
@@ -63,8 +74,7 @@ class Order extends Application {
     
     // make a menu ordering column
     function make_column($category) {
-        //FIXME
-        return $items;
+        return $this->menu->some('category',$category);
     }
 
     // add an item to an order
