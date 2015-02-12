@@ -70,7 +70,7 @@ $db['default'] = array(
 	'password' => '',
 	'database' => 'comp4711',
 	'dbdriver' => 'mysqli',
-        'port'     => "81",
+        //'port'     => '81',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => TRUE,
@@ -85,4 +85,5 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-);
+       );
+

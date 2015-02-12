@@ -18,7 +18,7 @@ class Order extends Application {
     // start a new order
     function neworder() {
         
-        $order_num = $this->orders->highest()+1;
+        $order_num = $this->orders->highest() + 1;
         
         // Create a new order
         $new_order = $this->orders->create();
@@ -36,13 +36,11 @@ class Order extends Application {
         if ($order_num == null)
             redirect('/order/neworder');
 
+        $order = $this->orders->get($order_num);
+        
         $this->data['pagebody'] = 'show_menu';
         $this->data['order_num'] = $order_num;
-        
-        $order = $this->orders->get($order_num);
-        $total = number_format( $this->orders->total($order_num), 2);
-        $this->data['title'] = 'Order #' . $order->num;
-        $this->data['title'] .= ' ($' . $total . ')';
+        $this->data['title'] = 'Order # ' . $order_num . '   $' . $order->total;
 
         // Make the columns
         $this->data['meals'] = $this->make_column('m');
@@ -91,7 +89,9 @@ class Order extends Application {
         $this->data['pagebody'] = 'show_order';
         $this->data['order_num'] = $order_num;
         
-        $this->data['total'] = number_format($this->orders->total($order_num), 2);
+        //Order total
+        $order = $this->orders->get($order_num);
+        $this->data['total'] = '$' . ($order->total);
         
         $items = $this->orderitems->group($order_num);
         foreach($items as $item){
